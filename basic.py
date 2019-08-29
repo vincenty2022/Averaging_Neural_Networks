@@ -1,6 +1,12 @@
 import numpy as np
 import random
 
+#####################################################
+# Neural network with two input nodes, one hidden
+# layer with two neurons, and an output neuron.
+# Calculates the average of the input values.
+
+#####################################################
 # relu
 def activation(x):
     if x > 0:
@@ -44,8 +50,6 @@ def back_prop(input, output, weight1, weight2, hidden_layer, true_output):
     delta2 = error * hidden_layer.T
     weight2 += delta2
 
-
-
     # weight1 back propagation
     delta_matrix = np.hstack((current_weight2, current_weight2))
     delta1 = input.T * delta_matrix * error
@@ -55,6 +59,7 @@ def back_prop(input, output, weight1, weight2, hidden_layer, true_output):
     return weight1, weight2
 
 
+# trains the neural net on a given dataset
 def train(data):
     weight1 = np.random.rand(2, 2)
     weight2 = np.random.rand(2, 1)
@@ -69,6 +74,7 @@ def train(data):
     return weight1, weight2
 
 
+# generates a large dataset of averages
 def generate_dataset(values):
     dataset = []
 
@@ -82,11 +88,14 @@ def generate_dataset(values):
 
     return np.array(dataset)
 
+# scale
 def preprocess(data):
     return data/100
 
+# unscale
 def postprocess(data):
     return data * 100
+
 
 # generates training dataset
 training_data = generate_dataset(10000)
@@ -96,7 +105,7 @@ scaled = preprocess(training_data)
 
 weight1, weight2 = train(scaled)
 
-# input for predicting
+# input for predicting. Modify values to test averaging
 prediction_input = preprocess(np.array([[0, 1]]))
 _, prediction = forward_prop(prediction_input, weight1, weight2)
 
