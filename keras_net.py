@@ -39,6 +39,7 @@ training_output = preprocess(split_data[1]).flatten()
 
 model = Sequential()
 model.add(Dense(2, input_dim=training_input.shape[1]))
+model.add(Dense(2, activation='relu'))
 model.add(Dense(1))
 
 model.compile(optimizer='rmsprop', loss='mse')
