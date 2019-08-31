@@ -1,5 +1,5 @@
 from keras.models import Sequential
-from keras.layers import Dense
+from keras.layers import Dense, Dropout
 import random
 import numpy as np
 
@@ -28,7 +28,7 @@ def preprocess(data):
 def postprocess(data):
     return data * 100
 
-training_data_length = 100000
+training_data_length = 10000
 BATCH_SIZE = 10
 EPOCHS = 10
 
